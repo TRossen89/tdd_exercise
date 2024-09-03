@@ -318,6 +318,34 @@ class NumConverterTest {
         assertEquals(expected, output);
     }
 
+    @Test
+    void convertArabic196ToRoman(){
+
+        int input = 196;
+
+        String expected = "CXCVI";
+
+        NumConverter converter = new NumConverter();
+
+        String output = converter.convertArabicToRoman(input);
+
+        assertEquals(expected, output);
+    }
+
+
+    @Test
+    void convertArabic448ToRoman(){
+
+        int input = 448;
+
+        String expected = "CDXLVIII";
+
+        NumConverter converter = new NumConverter();
+
+        String output = converter.convertArabicToRoman(input);
+
+        assertEquals(expected, output);
+    }
 
     @Test
     void convertArabic500ToRoman(){
@@ -325,6 +353,21 @@ class NumConverterTest {
         int input = 500;
 
         String expected = "D";
+
+        NumConverter converter = new NumConverter();
+
+        String output = converter.convertArabicToRoman(input);
+
+        assertEquals(expected, output);
+    }
+
+
+    @Test
+    void convertArabic999ToRoman(){
+
+        int input = 999;
+
+        String expected = "CMXCIX";
 
         NumConverter converter = new NumConverter();
 

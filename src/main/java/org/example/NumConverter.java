@@ -9,7 +9,7 @@ public class NumConverter {
     public NumConverter() {
     }
 
-    public String convertArabicToRoman(int number) {
+    public String convertArabicToRomanOriginal(int number) {
 
 
         // Storing number as a String to make the digits into a List
@@ -24,7 +24,6 @@ public class NumConverter {
             digitArray.add(Character.getNumericValue(ch));
         }
 
-        int size = digitArray.size();
 
         // Initializing the returnValue (the Roman number)
         String returnValue = "";
@@ -55,10 +54,7 @@ public class NumConverter {
                     returnValue += "C";
                 }
             }
-
             digitArray.remove(0);
-
-
         }
 
         if (digitArray.size() == 2) {
@@ -176,6 +172,7 @@ public class NumConverter {
     }
 
 
+
     public int[] getDigitsArray(int number) {
 
         String numberStr = Integer.toString(number);
@@ -191,4 +188,116 @@ public class NumConverter {
 
         return digits;
     }
+
+
+
+    public String convertArabicToRoman(int number) {
+
+        // Storing number as a String to make the digits into a List
+        String numberStr = Integer.toString(number);
+
+        // Creating an ArrayList of the digits
+        List<Integer> digitArray = new ArrayList<>();
+
+        // Populating the ArrayList
+        for (char ch : numberStr.toCharArray()) {
+            digitArray.add(Character.getNumericValue(ch));
+        }
+
+        String returnValue = "";
+
+
+        int digitNumber = digitArray.size();
+
+
+        while (digitNumber > 0 ){
+
+
+            if (digitArray.get(0) == 9) {
+
+                //A switch would maybe be better
+                if(digitNumber == 1) {
+                    returnValue += "IX";
+                }
+                if(digitNumber == 2) {
+                    returnValue += "XC";
+                }
+                if(digitNumber == 3) {
+                    returnValue += "CM";
+                }
+
+
+            } else if (digitArray.get(0) > 5) {
+
+                //A switch would maybe be better
+                String loopValue = "";
+
+                if(digitNumber == 1) {
+                    returnValue += "V";
+                    loopValue = "I";
+                }
+                if(digitNumber == 2) {
+                    returnValue += "L";
+                    loopValue = "X";
+                }
+                if(digitNumber == 3) {
+                    returnValue += "D";
+                    loopValue = "C";
+                }
+
+                for (int i = 0; i < digitArray.get(0) - 5; i++) {
+                    returnValue += loopValue;
+                }
+
+
+            } else if (digitArray.get(0) == 5) {
+
+                //A switch would maybe be better
+                if(digitNumber == 1) {
+                    returnValue += "V";
+                }
+                if(digitNumber == 2) {
+                    returnValue += "L";
+                }
+                if(digitNumber == 3) {
+                    returnValue += "D";
+                }
+
+
+            } else if (digitArray.get(0) == 4) {
+                if(digitNumber == 1) {
+                    returnValue += "IV";
+                }
+                if(digitNumber == 2) {
+                    returnValue += "XL";
+                }
+                if(digitNumber == 3) {
+                    returnValue += "CD";
+                }
+
+
+            } else if (digitArray.get(0) < 4) {
+
+                for (int i = 0; i < digitArray.get(0); i++) {
+
+                    //A switch would maybe be better
+                    if(digitNumber == 1) {
+                        returnValue += "I";
+                    }
+                    if(digitNumber == 2) {
+                        returnValue += "X";
+                    }
+                    if(digitNumber == 3) {
+                        returnValue += "C";
+                    }
+                }
+            }
+
+            digitArray.remove(0);
+            digitNumber -= 1;
+        }
+
+        return returnValue;
+    }
+
 }
