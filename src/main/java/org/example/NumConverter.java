@@ -172,24 +172,8 @@ public class NumConverter {
     }
 
 
-    public int[] getDigitsArray(int number) {
 
-        String numberStr = Integer.toString(number);
-        int length = numberStr.length();
-
-        // Create an array to hold the digits
-        int[] digits = new int[length];
-
-        // Populate the array with digits
-        for (int i = 0; i < length; i++) {
-            digits[i] = Character.getNumericValue(numberStr.charAt(i));
-        }
-
-        return digits;
-    }
-
-
-    public String convertArabicToRoman(int number) {
+    public String convertArabicToRomanRefactor1(int number) {
 
         // Storing number as a String to make the digits into a List
         String numberStr = Integer.toString(number);
@@ -204,9 +188,7 @@ public class NumConverter {
 
         String returnValue = "";
 
-
         int digitNumber = digitArray.size();
-
 
         while (digitNumber > 0) {
 
@@ -273,6 +255,92 @@ public class NumConverter {
 
                     for (int i = 0; i < digitArray.get(0); i++) {
                         returnValue += tempReturn;
+                    }
+                }
+            }
+
+            digitArray.remove(0);
+            digitNumber -= 1;
+        }
+
+        return returnValue;
+    }
+
+
+    public String convertArabicToRoman(int number) {
+
+        // Storing number as a String to make the digits into a List
+        String numberStr = Integer.toString(number);
+
+        // Creating an ArrayList of the digits
+        List<Integer> digitArray = new ArrayList<>();
+
+        // Populating the ArrayList
+        for (char ch : numberStr.toCharArray()) {
+            digitArray.add(Character.getNumericValue(ch));
+        }
+
+        String returnValue = "";
+
+        int digitNumber = digitArray.size();
+
+        while (digitNumber > 0) {
+
+            String tempValNine = "";
+            String tempValFour = "";
+
+            if (digitNumber == 1) {
+                tempValNine += "IX";
+                tempValFour += "IV";
+            }
+            if (digitNumber == 2) {
+                tempValNine += "XC";
+                tempValFour += "XL";
+            }
+            if (digitNumber == 3) {
+                tempValNine += "CM";
+                tempValFour += "CD";
+            }
+
+            if (digitArray.get(0) >= 5) {
+
+                if (digitArray.get(0) == 9) {
+                    returnValue += tempValNine;
+
+                } else {
+                    String loopValue = tempValNine.substring(0, tempValNine.length() - 1);
+
+                    String addToFiveValue = tempValFour.substring(1);
+
+                    if (digitArray.get(0) < 9) {
+                        if (digitNumber == 1) {
+                            returnValue += addToFiveValue;
+                        }
+                        if (digitNumber == 2) {
+                            returnValue += addToFiveValue;
+                        }
+                        if (digitNumber == 3) {
+                            returnValue += addToFiveValue;
+                        }
+
+                        if (digitArray.get(0) != 5) {
+                            for (int i = 0; i < digitArray.get(0) - 5; i++) {
+                                returnValue += loopValue;
+                            }
+                        }
+                    }
+                }
+
+            } else if (digitArray.get(0) <= 4) {
+
+                if (digitArray.get(0) == 4) {
+                    returnValue += tempValFour;
+
+                } else {
+                    tempValFour = tempValFour.substring(0, tempValFour.length() - 1);
+
+                    for (int i = 0; i < digitArray.get(0); i++) {
+                        returnValue += tempValFour;
                     }
                 }
             }
