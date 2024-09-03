@@ -24,11 +24,43 @@ public class NumConverter {
             digitArray.add(Character.getNumericValue(ch));
         }
 
+        int size = digitArray.size();
 
         // Initializing the returnValue (the Roman number)
         String returnValue = "";
 
         // Checking the number of digits in the number
+        if (digitArray.size() == 3) {
+
+            if (digitArray.get(0) == 9) {
+                returnValue += "CM";
+
+            } else if (digitArray.get(0) > 5) {
+
+                returnValue += "D";
+
+                for (int i = 0; i < digitArray.get(0) - 5; i++) {
+                    returnValue += "C";
+                }
+
+            } else if (digitArray.get(0) == 5) {
+                returnValue += "D";
+
+            } else if (digitArray.get(0) == 4) {
+                returnValue += "CD";
+
+            } else if (digitArray.get(0) < 4) {
+
+                for (int i = 0; i < digitArray.get(0); i++) {
+                    returnValue += "C";
+                }
+            }
+
+            digitArray.remove(0);
+
+
+        }
+
         if (digitArray.size() == 2) {
 
             if (digitArray.get(0) == 9) {
