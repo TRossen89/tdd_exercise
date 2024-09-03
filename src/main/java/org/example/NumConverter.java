@@ -304,7 +304,7 @@ public class NumConverter {
                 tempValNine += "CM";
             }
 
-            //TODO: NOT THE CORRECT ROMAN LETTERS/NUMBERS - MAYBE EDIT TO CORRECT
+            //TODO: NOT THE CORRECT ROMAN LETTERS/NUMBERS - MAYBE EDIT THIS
 
             if (digitNumber == 4) {
                 tempValFour += "MF";
