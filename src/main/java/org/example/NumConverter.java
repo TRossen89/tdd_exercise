@@ -172,7 +172,6 @@ public class NumConverter {
     }
 
 
-
     public int[] getDigitsArray(int number) {
 
         String numberStr = Integer.toString(number);
@@ -188,7 +187,6 @@ public class NumConverter {
 
         return digits;
     }
-
 
 
     public String convertArabicToRoman(int number) {
@@ -210,85 +208,71 @@ public class NumConverter {
         int digitNumber = digitArray.size();
 
 
-        while (digitNumber > 0 ){
+        while (digitNumber > 0) {
 
 
-            if (digitArray.get(0) == 9) {
+            if (digitArray.get(0) >= 5) {
 
-                //A switch would maybe be better
-                if(digitNumber == 1) {
-                    returnValue += "IX";
+                String tempValue = "";
+
+
+                if (digitNumber == 1) {
+                    tempValue += "IX";
                 }
-                if(digitNumber == 2) {
-                    returnValue += "XC";
+                if (digitNumber == 2) {
+                    tempValue += "XC";
                 }
-                if(digitNumber == 3) {
-                    returnValue += "CM";
-                }
-
-
-            } else if (digitArray.get(0) > 5) {
-
-                //A switch would maybe be better
-                String loopValue = "";
-
-                if(digitNumber == 1) {
-                    returnValue += "V";
-                    loopValue = "I";
-                }
-                if(digitNumber == 2) {
-                    returnValue += "L";
-                    loopValue = "X";
-                }
-                if(digitNumber == 3) {
-                    returnValue += "D";
-                    loopValue = "C";
+                if (digitNumber == 3) {
+                    tempValue += "CM";
                 }
 
-                for (int i = 0; i < digitArray.get(0) - 5; i++) {
-                    returnValue += loopValue;
-                }
+                if (digitArray.get(0) == 9) {
+                    returnValue += tempValue;
 
+                } else {
+                    String loopValue = tempValue.substring(0, tempValue.length() - 1);
 
-            } else if (digitArray.get(0) == 5) {
+                    if (digitArray.get(0) < 9) {
+                        if (digitNumber == 1) {
+                            returnValue += "V";
+                        }
+                        if (digitNumber == 2) {
+                            returnValue += "L";
+                        }
+                        if (digitNumber == 3) {
+                            returnValue += "D";
+                        }
 
-                //A switch would maybe be better
-                if(digitNumber == 1) {
-                    returnValue += "V";
-                }
-                if(digitNumber == 2) {
-                    returnValue += "L";
-                }
-                if(digitNumber == 3) {
-                    returnValue += "D";
-                }
-
-
-            } else if (digitArray.get(0) == 4) {
-                if(digitNumber == 1) {
-                    returnValue += "IV";
-                }
-                if(digitNumber == 2) {
-                    returnValue += "XL";
-                }
-                if(digitNumber == 3) {
-                    returnValue += "CD";
-                }
-
-
-            } else if (digitArray.get(0) < 4) {
-
-                for (int i = 0; i < digitArray.get(0); i++) {
-
-                    //A switch would maybe be better
-                    if(digitNumber == 1) {
-                        returnValue += "I";
+                        if (digitArray.get(0) != 5) {
+                            for (int i = 0; i < digitArray.get(0) - 5; i++) {
+                                returnValue += loopValue;
+                            }
+                        }
                     }
-                    if(digitNumber == 2) {
-                        returnValue += "X";
-                    }
-                    if(digitNumber == 3) {
-                        returnValue += "C";
+                }
+
+            } else if (digitArray.get(0) <= 4) {
+
+                String tempReturn = "";
+
+                if (digitNumber == 1) {
+                    tempReturn += "IV";
+                }
+                if (digitNumber == 2) {
+                    tempReturn += "XL";
+                }
+                if (digitNumber == 3) {
+                    tempReturn += "CD";
+                }
+
+                if (digitArray.get(0) == 4) {
+                    returnValue += tempReturn;
+
+                } else {
+                    tempReturn = tempReturn.substring(0, tempReturn.length() - 1);
+
+                    for (int i = 0; i < digitArray.get(0); i++) {
+                        returnValue += tempReturn;
                     }
                 }
             }
@@ -299,5 +283,71 @@ public class NumConverter {
 
         return returnValue;
     }
+
+    /*
+            if (digitArray.get(0) == 9) {
+
+                //A switch would maybe be better
+                if (digitNumber == 1) {
+                    returnValue += "IX";
+                }
+                if (digitNumber == 2) {
+                    returnValue += "XC";
+                }
+                if (digitNumber == 3) {
+                    returnValue += "CM";
+                }
+
+
+            } else*/
+
+
+        /*
+            } else if (digitArray.get(0) == 5) {
+
+                //A switch would maybe be better
+                if (digitNumber == 1) {
+                    returnValue += "V";
+                }
+                if (digitNumber == 2) {
+                    returnValue += "L";
+                }
+                if (digitNumber == 3) {
+                    returnValue += "D";
+                }
+                */
+
+/*
+            } else if (digitArray.get(0) == 4) {
+                if (digitNumber == 1) {
+                    returnValue += "IV";
+                }
+                if (digitNumber == 2) {
+                    returnValue += "XL";
+                }
+                if (digitNumber == 3) {
+                    returnValue += "CD";
+                }
+
+ */
+
+
+
+            /*
+
+                    //A switch would maybe be better
+                    if (digitNumber == 1) {
+                        returnValue += "I";
+                    }
+                    if (digitNumber == 2) {
+                        returnValue += "X";
+                    }
+                    if (digitNumber == 3) {
+                        returnValue += "C";
+                    }
+
+             */
+
+
 
 }
