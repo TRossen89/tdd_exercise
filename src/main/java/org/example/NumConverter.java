@@ -12,23 +12,24 @@ public class NumConverter {
     public String convertArabicToRoman(int number) {
 
 
+        // Storing number as a String to make the digits into a List
         String numberStr = Integer.toString(number);
 
-        int length = numberStr.length();
 
-        // Create an array to hold the digits
+        // Creating an ArrayList of the digits
         List<Integer> digitArray = new ArrayList<>();
 
-        // Populate the array with digits
-        for (int i = 0; i < length; i++) {
-            digitArray.add(Character.getNumericValue(numberStr.charAt(i)));
+        // Populating the ArrayList
+        for (char ch : numberStr.toCharArray()) {
+            digitArray.add(Character.getNumericValue(ch));
         }
 
 
-
+        // Initializing the returnValue (the Roman number)
         String returnValue = "";
 
-        if (digitArray.size() > 1) {
+        // Checking the number of digits in the number
+        if (digitArray.size() == 2) {
 
             if (digitArray.get(0) == 9) {
                 returnValue += "XC";
