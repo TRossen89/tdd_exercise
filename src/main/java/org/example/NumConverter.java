@@ -290,16 +290,25 @@ public class NumConverter {
             String tempValFour = "";
 
             if (digitNumber == 1) {
-                tempValNine += "IX";
                 tempValFour += "IV";
+                tempValNine += "IX";
+
             }
             if (digitNumber == 2) {
-                tempValNine += "XC";
                 tempValFour += "XL";
+                tempValNine += "XC";
+
             }
             if (digitNumber == 3) {
-                tempValNine += "CM";
                 tempValFour += "CD";
+                tempValNine += "CM";
+            }
+
+            //TODO: NOT THE CORRECT ROMAN LETTERS/NUMBERS - MAYBE EDIT TO CORRECT
+
+            if (digitNumber == 4) {
+                tempValFour += "MF";
+                tempValNine += "MT";
             }
 
             if (digitArray.get(0) >= 5) {
@@ -309,19 +318,11 @@ public class NumConverter {
 
                 } else {
                     String loopValue = tempValNine.substring(0, tempValNine.length() - 1);
-
                     String addToFiveValue = tempValFour.substring(1);
 
                     if (digitArray.get(0) < 9) {
-                        if (digitNumber == 1) {
-                            returnValue += addToFiveValue;
-                        }
-                        if (digitNumber == 2) {
-                            returnValue += addToFiveValue;
-                        }
-                        if (digitNumber == 3) {
-                            returnValue += addToFiveValue;
-                        }
+
+                        returnValue += addToFiveValue;
 
                         if (digitArray.get(0) != 5) {
                             for (int i = 0; i < digitArray.get(0) - 5; i++) {
@@ -330,7 +331,6 @@ public class NumConverter {
                         }
                     }
                 }
-
             } else if (digitArray.get(0) <= 4) {
 
                 if (digitArray.get(0) == 4) {
@@ -344,7 +344,6 @@ public class NumConverter {
                     }
                 }
             }
-
             digitArray.remove(0);
             digitNumber -= 1;
         }
